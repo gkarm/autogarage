@@ -3,6 +3,8 @@ package nl.novi.autogarage.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "monteurs")
@@ -19,6 +21,9 @@ public class Monteur {
     private String lastName;
 
     private LocalDate dob;
+
+    @ManyToMany(mappedBy = "monteurs")
+    private Set<Auto> autos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -46,5 +51,9 @@ public class Monteur {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public Set<Auto> getAutos() {
+        return autos;
     }
 }
