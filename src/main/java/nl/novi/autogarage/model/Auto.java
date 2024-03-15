@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,12 @@ public class Auto {
     @ManyToMany
 
     private Set<Monteur> monteurs = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    private AdMedewerker adMedewerker;
+
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    private BoMedewerker boMedewerker;
+
 
     public Long getId() {
         return id;

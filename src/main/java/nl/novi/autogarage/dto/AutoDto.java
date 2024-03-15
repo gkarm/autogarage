@@ -18,5 +18,6 @@ public class AutoDto {
     public LocalDate bouwjaar;
 
     public List<Long> monteurIds;
+    public List<Long> admedewerkerIds;
 
 }

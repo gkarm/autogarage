@@ -6,27 +6,25 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "admedewerkers")
-
-public class AdMedewerker {
+@Table(name = "bomedewerkers")
+public class BoMedewerker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "first_name")
+
+    @Column(name = "first_name", length = 128)
     private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
+
+    @Column(name = "last_name", length = 128)
+    private String LastName;
+
     private LocalDate dob;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adMedewerker")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "boMedewerker")
     private List<Auto> autos;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -38,11 +36,11 @@ public class AdMedewerker {
     }
 
     public String getLastName() {
-        return lastName;
+        return LastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        LastName = lastName;
     }
 
     public LocalDate getDob() {
