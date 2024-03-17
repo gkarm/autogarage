@@ -25,9 +25,14 @@ public class Auto {
     private Set<Monteur> monteurs = new HashSet<>();
     @ManyToOne(fetch = FetchType.EAGER,optional = false)
     private AdMedewerker adMedewerker;
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    private KassaMedewerker kassaMedewerker;
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     private BoMedewerker boMedewerker;
+
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    private Klant klant;
 
 
     public Long getId() {

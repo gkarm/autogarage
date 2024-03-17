@@ -19,5 +19,6 @@ public class AutoDto {
 
     public List<Long> monteurIds;
     public List<Long> admedewerkerIds;
+    public List<Long> klantIds;
 
 }
