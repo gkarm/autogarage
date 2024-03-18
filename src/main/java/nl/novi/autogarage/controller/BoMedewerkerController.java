@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/bomedwerkers")
+@RequestMapping("/bomedewerkers")
 public class BoMedewerkerController {
 
     private final BoMedewerkerService service;

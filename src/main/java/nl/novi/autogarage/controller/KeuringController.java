@@ -29,7 +29,7 @@ public class KeuringController {
         List<KeuringDto> keuringen = service.getAllKeuringen();
         return new ResponseEntity<>(keuringen, HttpStatus.OK);
     }
-    @GetMapping("/keuringen/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity <KeuringDto> getKeuringById(@PathVariable Long id) {
         Keuring Keuring = new Keuring();
         return ResponseEntity.ok(service.keuringDtoFromKeuring(Keuring));
