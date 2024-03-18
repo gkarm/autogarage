@@ -56,6 +56,12 @@ public class KeuringController {
 
        }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteKeuring(@PathVariable Long id) throws Exception {
+        service.deleteKeuring(id);
+       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 

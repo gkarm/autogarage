@@ -3,6 +3,7 @@ package nl.novi.autogarage.service;
 import nl.novi.autogarage.dto.KeuringDto;
 import nl.novi.autogarage.model.Keuring;
 import nl.novi.autogarage.repository.KeuringRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class KeuringService {
-
+@Autowired
     private final KeuringRepository repos;
 
     public KeuringService(KeuringRepository repos) {
@@ -56,6 +57,15 @@ public class KeuringService {
         keuringDto.setOpmerking(keuring.getOpmerking());
 
         return keuringDto;
+
+    }
+    public void deleteKeuring(Long id) throws Exception {
+        Optional<Keuring> keuringOptional = repos.findById(id);
+        if (keuringOptional.isPresent()) {
+            repos.deleteById(id);
+        } else {
+            throw new Exception("the Keuring corresponding to ID " +id+ "could not be found");
+        }
 
     }
 }
