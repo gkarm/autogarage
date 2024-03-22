@@ -75,6 +75,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/kassamedewerkers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/klanten").authenticated()
                         .requestMatchers(HttpMethod.POST, "/klanten").authenticated()
+                        .requestMatchers(HttpMethod.POST,"/upload").permitAll()
+
 
 
                         .requestMatchers("/**").permitAll()
