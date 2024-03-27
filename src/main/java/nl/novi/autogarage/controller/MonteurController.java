@@ -1,9 +1,11 @@
 package nl.novi.autogarage.controller;
 
 import jakarta.validation.Valid;
+import nl.novi.autogarage.Security.MyUserDetails;
 import nl.novi.autogarage.dto.MonteurDto;
 import nl.novi.autogarage.service.MonteurService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +42,7 @@ public class MonteurController {
 
 
     @PostMapping
-    public ResponseEntity<Object> createMonteur(@Valid @RequestBody MonteurDto monteurDto, BindingResult br) {
+    public ResponseEntity<Object> createMonteur(@AuthenticationPrincipal MyUserDetails myUserDetails, @Valid @RequestBody MonteurDto monteurDto, BindingResult br) {
 
         if (br.hasFieldErrors()) {
             StringBuilder sb = new StringBuilder();
@@ -55,7 +57,7 @@ public class MonteurController {
 
         }
         else {
-            monteurDto = service.createMonteur(monteurDto);
+            monteurDto = service.createMonteur(myUserDetails,monteurDto);
 
             URI uri = URI.create(
                     ServletUriComponentsBuilder

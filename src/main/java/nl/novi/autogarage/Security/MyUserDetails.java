@@ -20,7 +20,6 @@ public class MyUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-
         authorities.add(new SimpleGrantedAuthority(user.getUserRole().name()));
 
         return authorities;
@@ -34,6 +33,12 @@ public class MyUserDetails implements UserDetails {
     public String getUsername() {
         return user.getUsername();
     }
+
+    public UserRole getUserRole() {
+        return user.getUserRole();
+    }
+
+
 
     @Override
     public boolean isAccountNonExpired() {

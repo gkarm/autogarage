@@ -1,7 +1,10 @@
 package nl.novi.autogarage.service;
 
 
+import nl.novi.autogarage.Security.MyUserDetails;
 import nl.novi.autogarage.dto.MonteurDto;
+import nl.novi.autogarage.enumeration.UserRole;
+import nl.novi.autogarage.exception.ForbiddenException;
 import nl.novi.autogarage.model.Monteur;
 import nl.novi.autogarage.repository.MonteurRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +18,10 @@ public class MonteurService {
         this.repos = repos;
     }
 
-    public MonteurDto createMonteur(MonteurDto monteurDto) {
+    public MonteurDto createMonteur(MyUserDetails myUserDetails, MonteurDto monteurDto) {
+        if (!myUserDetails.getUserRole().equals(UserRole.ADMIN)) {
+            throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+" But you are not authorized ");
+        }
         Monteur monteur = new Monteur();
         monteur.setFirstName(monteurDto.firstName);
         monteur.setLastName(monteurDto.lastName);
@@ -24,5 +30,6 @@ public class MonteurService {
         monteurDto.id = monteur.getId();
 
         return monteurDto;
+
     }
 }
