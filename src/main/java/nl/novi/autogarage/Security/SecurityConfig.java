@@ -57,13 +57,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.POST,"/users").permitAll()
                         .requestMatchers(HttpMethod.GET, "/users/{id}").authenticated()
                         .requestMatchers(HttpMethod.POST, "/admedewerkers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/keuringen").authenticated()
                         .requestMatchers(HttpMethod.POST, "/keuringen").authenticated()
                         .requestMatchers(HttpMethod.GET, "/keuringen/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/keuringen/{id}").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/monteurs").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/monteurs").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/monteurs").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/onderdelen").authenticated()
                         .requestMatchers(HttpMethod.GET, "/onderdelen/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/onderdelen/{id}").authenticated()

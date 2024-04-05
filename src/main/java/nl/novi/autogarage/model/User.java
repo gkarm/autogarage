@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import nl.novi.autogarage.enumeration.UserRole;
-import org.springframework.context.annotation.Profile;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,25 +21,18 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "user_role")
-    private UserRole userRole;
 
-    public User(String username, String password, UserRole userRole) {
+    @Column(name = "user_role")
+    private List<UserRole> UserRole;
+
+    public User(String username, String password, List<UserRole> userRole) {
         this.username = username;
         this.password = password;
-        this.userRole = userRole;
+        this.UserRole = userRole;
 
     }
 
     public User() {
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-//    public UserRole getUserRole() {
-//        return this.userRoles;
-//    }
 }

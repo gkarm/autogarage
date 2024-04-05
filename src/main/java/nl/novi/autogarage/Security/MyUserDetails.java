@@ -19,8 +19,11 @@ public class MyUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
+        for (UserRole userRole : user.getUserRole()) {
+            authorities.add(new SimpleGrantedAuthority(userRole.name()));
+        }
 
-        authorities.add(new SimpleGrantedAuthority(user.getUserRole().name()));
+//        authorities.add(new SimpleGrantedAuthority(user.getUserRole().name()));
 
         return authorities;
     }
@@ -34,9 +37,10 @@ public class MyUserDetails implements UserDetails {
         return user.getUsername();
     }
 
-    public UserRole getUserRole() {
+    public List<UserRole> getUserRole() {
         return user.getUserRole();
     }
+
 
 
 

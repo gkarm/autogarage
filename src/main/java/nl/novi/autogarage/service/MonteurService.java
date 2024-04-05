@@ -19,7 +19,7 @@ public class MonteurService {
     }
 
     public MonteurDto createMonteur(MyUserDetails myUserDetails, MonteurDto monteurDto) {
-        if (!myUserDetails.getUserRole().equals(UserRole.ADMIN)) {
+        if (!myUserDetails.getUserRole().contains(UserRole.ADMIN)) {
             throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+" But you are not authorized ");
         }
         Monteur monteur = new Monteur();
