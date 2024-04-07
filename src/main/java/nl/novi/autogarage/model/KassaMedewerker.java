@@ -58,6 +58,6 @@ public class KassaMedewerker {
     }
 
 
-
-
+    public void setId(Long id) {
+    }
 }

@@ -7,13 +7,25 @@ import nl.novi.autogarage.enumeration.UserRole;
 import nl.novi.autogarage.exception.ForbiddenException;
 import nl.novi.autogarage.model.Monteur;
 import nl.novi.autogarage.repository.MonteurRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MonteurService {
+    @Autowired
+
 
     private final MonteurRepository repos;
 // Above code is the constructor injection
+public List<Monteur> getAllMonteurs() {
+    return repos.findAll();
+}
+
+    public Monteur getMonteurById(Long id) {
+        return repos.findById(id).orElse(null);
+    }
     public MonteurService(MonteurRepository repos) {
         this.repos = repos;
     }
@@ -30,6 +42,17 @@ public class MonteurService {
         monteurDto.id = monteur.getId();
 
         return monteurDto;
+    }
 
+    public Monteur updateMonteur(Long id, Monteur monteur) {
+        if (repos.existsById(id)) {
+            monteur.getId();
+            return repos.save(monteur);
+        }
+        return null;
+    }
+
+    public void deleteMonteur(Long id) {
+        repos.deleteById(id);
     }
 }

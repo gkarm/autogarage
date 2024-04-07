@@ -73,4 +73,7 @@ public class Auto {
     public Set<Monteur> getMonteurs() {
         return monteurs;
     }
+
+    public void setId(Long id) {
+    }
 }

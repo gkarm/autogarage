@@ -58,4 +58,7 @@ public class BoMedewerker {
     public void setAutos(List<Auto> autos) {
         this.autos = autos;
     }
+
+    public void setId(Long id) {
+    }
 }

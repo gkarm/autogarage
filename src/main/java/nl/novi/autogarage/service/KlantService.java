@@ -3,10 +3,15 @@ package nl.novi.autogarage.service;
 import nl.novi.autogarage.dto.KlantDto;
 import nl.novi.autogarage.model.Klant;
 import nl.novi.autogarage.repository.KlantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class KlantService {
+
+    @Autowired
 
     private final KlantRepository repos;
 
@@ -14,17 +19,36 @@ public class KlantService {
         this.repos = repos;
     }
 
+    public List<Klant> getAllKlanten() {
+        return repos.findAll();
+    }
+
+    public Klant getKlantById(Long id) {
+        return repos.findById(id).orElse(null);
+    }
+
     public KlantDto createKlant(KlantDto klantDto) {
         Klant klant = new Klant();
-        klant.setFirstName(klantDto.firstName);
-        klant.setLastName(klantDto.lastName);
-        klant.setPhone(klantDto.phone);
-        klant.setDob(klantDto.dob);
+        klant.setFirstName(klantDto.getFirstName());
+        klant.setLastName(klantDto.getLastName());
+        klant.setPhone(klantDto.getPhone());
+        klant.setDob(klantDto.getDob());
         repos.save(klant);
-        klantDto.id = klant.getId();
+        klantDto.setId(klant.getId());
 
         return klantDto;
+    }
 
+    public Klant updateKlant(Long id, Klant klant) {
+        if (repos.existsById(id)) {
+            klant.setId(id);
+            return repos.save(klant);
+        }
+        return null;
+    }
+
+    public void deleteKlant(Long id) {
+        repos.deleteById(id);
     }
 
 }

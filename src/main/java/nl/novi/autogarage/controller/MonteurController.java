@@ -3,8 +3,11 @@ package nl.novi.autogarage.controller;
 import jakarta.validation.Valid;
 import nl.novi.autogarage.Security.MyUserDetails;
 import nl.novi.autogarage.dto.MonteurDto;
+import nl.novi.autogarage.model.Monteur;
 import nl.novi.autogarage.service.MonteurService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,12 +21,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/monteurs")
 public class MonteurController {
-
+    @Autowired
     private final MonteurService service;
 
     public MonteurController(MonteurService service) {
         this.service = service;
     }
+
+    @GetMapping
+    public List<Monteur> getAllMonteurs() {
+        return service.getAllMonteurs();
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Monteur> getMonteurById(@PathVariable Long id) {
+        Monteur monteur = service.getMonteurById(id);
+        if (monteur != null) {
+            return ResponseEntity.ok(monteur);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 
 
 
@@ -42,6 +59,7 @@ public class MonteurController {
 
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Object> createMonteur(@AuthenticationPrincipal MyUserDetails myUserDetails, @Valid @RequestBody MonteurDto monteurDto, BindingResult br) {
 
         if (br.hasFieldErrors()) {
@@ -66,10 +84,22 @@ public class MonteurController {
 
             return ResponseEntity.created(uri).body(monteurDto);
         }
-
-
-
+    }
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Monteur> updateMonteur(@PathVariable Long id, @RequestBody Monteur monteur) {
+        Monteur updatedMonteur = service.updateMonteur(id, monteur);
+        if (updatedMonteur != null) {
+            return ResponseEntity.ok(updatedMonteur);
+        }
+        return ResponseEntity.notFound().build();
     }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Void> deleteMonteur(@PathVariable Long id) {
+        service.deleteMonteur(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

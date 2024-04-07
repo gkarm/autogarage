@@ -3,26 +3,41 @@ package nl.novi.autogarage.controller;
 
 import jakarta.validation.Valid;
 import nl.novi.autogarage.dto.BoMedewerkerDto;
+import nl.novi.autogarage.model.BoMedewerker;
 import nl.novi.autogarage.service.BoMedewerkerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bomedewerkers")
 public class BoMedewerkerController {
 
+    @Autowired
+
     private final BoMedewerkerService service;
 
     public BoMedewerkerController(BoMedewerkerService service) {
         this.service = service;
+    }
+    @GetMapping
+    public List<BoMedewerker> getAllBoMedewerkers() {
+        return service.getAllBoMedewerkers();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BoMedewerker> getBoMedewerkerById(@PathVariable Long id) {
+        BoMedewerker boMedewerker = service.getBoMedewerkerById(id);
+        if (boMedewerker != null) {
+            return ResponseEntity.ok(boMedewerker);
+        }
+        return ResponseEntity.notFound().build();
     }
     @PostMapping
     public ResponseEntity<Object> createBoMedewerker(@Valid @RequestBody BoMedewerkerDto boMedewerkerDto, BindingResult br) {
@@ -46,5 +61,20 @@ public class BoMedewerkerController {
             return ResponseEntity.created(uri).body(boMedewerkerDto);
         }
 
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BoMedewerker> updateBoMedewerker(@PathVariable Long id, @RequestBody BoMedewerker boMedewerker) {
+        BoMedewerker updatedBoMedewerker = service.updateBoMedewerker(id, boMedewerker);
+        if (updatedBoMedewerker != null) {
+            return ResponseEntity.ok(updatedBoMedewerker);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBoMedewerker(@PathVariable Long id) {
+        service.deleteBoMedewerker(id);
+        return ResponseEntity.noContent().build();
     }
 }
