@@ -59,7 +59,41 @@ public class ReparatieController {
         service.deleteReparatie(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @PutMapping("/{id}/niet-uitvoeren")
+    public ResponseEntity<Void> setReparatieNietUitvoeren(@PathVariable Long id) {
+        service.setReparatieNietUitvoeren(id);
+        return ResponseEntity.ok().build();
 
+        /* monteur kan reparatie op "niet uitvoeren" door een PUT verzoek te
+        sturen naar '/reparaties/{reparatieId}/niet-uitvoeren'
+         */
+    }
+    @PutMapping("/{reparatieId}/toevoegen")
+    public ResponseEntity<Void> voegOnderdeelEnHandelingToeAanReparatie(@PathVariable Long reparatieId,
+                                                                        @RequestParam Long onderdeelId,
+                                                                        @RequestParam Long handelingId) {
+        service.voegOnderdeelEnHandelingToeAanReparatie(reparatieId, onderdeelId, handelingId);
+        return ResponseEntity.ok().build();
+    }
 
+    @PutMapping("/{reparatieId}/koppel-bon")
+    public ResponseEntity<Void> koppelBonAanReparatie(@PathVariable Long reparatieId, @RequestParam Long bonId) {
+        service.koppelBonAanReparatie(reparatieId, bonId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{reparatieId}/toevoegen-onderdeel")
+    public ResponseEntity<Void> voegGebruiktOnderdeelToeAanReparatie(@PathVariable Long reparatieId,
+                                                                     @RequestParam Long onderdeelId) {
+        service.voegGebruiktOnderdeelToeAanReparatie(reparatieId, onderdeelId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{reparatieId}/toevoegen-handeling")
+    public ResponseEntity<Void> voegGebruikteHandelingToeAanReparatie(@PathVariable Long reparatieId,
+                                                                      @RequestParam Long handelingId) {
+        service.voegGebruikteHandelingToeAanReparatie(reparatieId, handelingId);
+        return ResponseEntity.ok().build();
+    }
 
 }

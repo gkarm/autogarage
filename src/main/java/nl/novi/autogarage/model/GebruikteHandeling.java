@@ -17,6 +17,7 @@ public class GebruikteHandeling {
     @JoinColumn(name = "handeling_id", nullable = false)
     private Handeling handeling;
 
+    
     public Long getId() {
         return id;
     }
@@ -39,5 +40,11 @@ public class GebruikteHandeling {
 
     public void setHandeling(Handeling handeling) {
         this.handeling = handeling;
+    }
+
+    public void setReparatieId(Long reparatieId) {
+    }
+
+    public void setHandelingId(Long handelingId) {
     }
 }

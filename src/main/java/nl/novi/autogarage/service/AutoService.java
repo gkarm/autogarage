@@ -3,6 +3,7 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.AutoDto;
 import nl.novi.autogarage.model.Auto;
+import nl.novi.autogarage.model.Tekortkoming;
 import nl.novi.autogarage.repository.AutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,15 @@ public class AutoService {
 
     public void deleteAuto(Long id) {
         repos.deleteById(id);
+    }
+
+    public void addTekortkomingToAuto(Long autoId, Tekortkoming tekortkoming) {
+        Auto auto = repos.findById(autoId).orElse(null);
+        if (auto != null) {
+            tekortkoming.setAuto(auto);
+            auto.getTekortkomingen().add(tekortkoming);
+            repos.save(auto);
+        }
     }
 
 }

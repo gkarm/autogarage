@@ -1,43 +1,46 @@
 package nl.novi.autogarage.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Table(name = "tekortkomingen")
 public class Tekortkoming {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Getter
     private String beschrijving;
+    @Getter
     private String oplossing;
 
-    public Tekortkoming() {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "auto_id", nullable = false)
+    private Auto auto;
+
+    public Tekortkoming(Auto auto) {
+        this.auto = auto;
         this.beschrijving = beschrijving;
         this.oplossing = oplossing;
     }
 
-    public Long getId() {
-        return id;
+    public Tekortkoming() {
+
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getBeschrijving() {
-        return beschrijving;
-    }
-
     public void setBeschrijving(String beschrijving) {
         this.beschrijving = beschrijving;
     }
 
-    public String getOplossing() {
-        return oplossing;
-    }
-
     public void setOplossing(String oplossing) {
         this.oplossing = oplossing;
+    }
+
+    public void setAuto(Auto auto) {
     }
 }

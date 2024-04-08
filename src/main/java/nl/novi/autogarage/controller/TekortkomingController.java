@@ -1,6 +1,7 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.dto.TekortkomingDto;
+import nl.novi.autogarage.model.Auto;
 import nl.novi.autogarage.model.Tekortkoming;
 import nl.novi.autogarage.service.TekortkomingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class TekortkomingController {
     @Autowired
     private TekortkomingService tekortkomingService;
+    private Auto auto;
 
     @PostMapping
     public ResponseEntity<Tekortkoming> createTekortkoming(@RequestBody TekortkomingDto tekortkomingDto) {
@@ -45,7 +47,7 @@ public class TekortkomingController {
     }
 
     private Tekortkoming mapToTekortkoming(TekortkomingDto tekortkomingDto) {
-        Tekortkoming tekortkoming = new Tekortkoming();
+        Tekortkoming tekortkoming = new Tekortkoming(auto);
         tekortkoming.setBeschrijving(tekortkomingDto.getBeschrijving());
         tekortkoming.setOplossing(tekortkomingDto.getOplossing());
         return tekortkoming;

@@ -1,7 +1,9 @@
 package nl.novi.autogarage.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class GebruiktOnderdeel {
     @Id
@@ -17,27 +19,17 @@ public class GebruiktOnderdeel {
     @JoinColumn(name = "onderdeel_id", nullable = false)
     private Onderdeel onderdeel;
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Reparatie getReparatie() {
-        return reparatie;
     }
 
     public void setReparatie(Reparatie reparatie) {
         this.reparatie = reparatie;
     }
 
-    public Onderdeel getOnderdeel() {
-        return onderdeel;
-    }
-
     public void setOnderdeel(Onderdeel onderdeel) {
         this.onderdeel = onderdeel;
     }
+
+
 }

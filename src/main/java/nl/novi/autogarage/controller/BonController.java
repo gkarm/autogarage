@@ -14,6 +14,7 @@ import java.util.List;
 public class BonController {
     @Autowired
     private BonService bonService;
+    private double Bon;
 
     @GetMapping
     public List<Bon> getAllBons() {
@@ -31,7 +32,7 @@ public class BonController {
 
     @PostMapping
     public ResponseEntity<Bon> createBon(@RequestBody Bon bon) {
-        Bon createdBon = bonService.createBon(bon);
+        Bon createdBon = bonService.createBon(Bon);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBon);
     }
 

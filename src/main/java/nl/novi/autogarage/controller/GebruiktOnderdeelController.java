@@ -1,6 +1,8 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.model.GebruiktOnderdeel;
+import nl.novi.autogarage.model.Onderdeel;
+import nl.novi.autogarage.model.Reparatie;
 import nl.novi.autogarage.service.GebruiktOnderdeelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/gebruikt-onderdelen")
+@RequestMapping("/gebruikte-onderdelen")
 public class GebruiktOnderdeelController {
     @Autowired
     private GebruiktOnderdeelService gebruiktOnderdeelService;
