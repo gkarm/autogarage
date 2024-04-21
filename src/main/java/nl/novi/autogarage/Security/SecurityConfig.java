@@ -59,7 +59,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST,"/users").permitAll()
                         .requestMatchers(HttpMethod.GET, "/users/{id}").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admedewerkers").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/admedewerkers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/keuringen").authenticated()
                         .requestMatchers(HttpMethod.POST, "/keuringen").authenticated()
                         .requestMatchers(HttpMethod.GET, "/keuringen/{id}").authenticated()
@@ -70,7 +72,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/onderdelen/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/onderdelen/{id}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/autos").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/autos").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/autos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/bomedwerkers").authenticated()
                         .requestMatchers(HttpMethod.POST, "/bomedewerkers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/kassamedewerkers").authenticated()

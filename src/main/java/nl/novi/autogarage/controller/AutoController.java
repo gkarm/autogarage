@@ -3,6 +3,7 @@ package nl.novi.autogarage.controller;
 
 import jakarta.validation.Valid;
 import nl.novi.autogarage.dto.AutoDto;
+import nl.novi.autogarage.model.AdMedewerker;
 import nl.novi.autogarage.model.Auto;
 import nl.novi.autogarage.model.Monteur;
 import nl.novi.autogarage.model.Tekortkoming;
@@ -52,25 +53,17 @@ public class AutoController {
 
 
     @PostMapping
-    public ResponseEntity<AutoDto> createAuto(@Valid @RequestBody AutoDto autoDto, BindingResult br) {
-        Auto auto = new Auto();
-        auto.setModel(autoDto.model);
-        auto.setMerk(autoDto.merk);
-        auto.setKenteken(autoDto.kenteken);
-        auto.setBouwjaar(autoDto.bouwjaar);
-        for (Long id : autoDto.monteurIds) {
-            Optional<Monteur> om = monteurRepos.findById(id);
-            if (om.isPresent()) {
-                Monteur monteur = om.get();
-                auto.getMonteurs().add(monteur);
-            }
+    public ResponseEntity<?> createAuto(@Valid @RequestBody AutoDto autoDto, BindingResult br) {
 
+        if (br.hasErrors()) {
+            return ResponseEntity.badRequest().body(br.getAllErrors());
         }
-        autoRepos.save(auto);
-        autoDto.id = auto.getId();
-        return new ResponseEntity<>(autoDto, HttpStatus.CREATED);
+        AutoDto auto = autoService.createAuto(autoDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(auto);
+
 
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Auto> updateAuto(@PathVariable Long id, @RequestBody Auto auto) {
         Auto updatedAuto = autoService.updateAuto(id, auto);

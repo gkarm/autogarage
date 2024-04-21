@@ -27,11 +27,13 @@ public class Auto {
 
     @Getter
     @ManyToMany
-
     private Set<Monteur> monteurs = new HashSet<>();
-    @Getter
+
+
     @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "admedewerker")
     private AdMedewerker adMedewerker;
+
     @Getter
     @ManyToOne(fetch = FetchType.EAGER,optional = false)
     private KassaMedewerker kassaMedewerker;
@@ -76,7 +78,7 @@ public class Auto {
         this.monteurs = monteurs;
     }
 
-    public void setAdMedewerker(AdMedewerker adMedewerker) {
+    public void setAdmedewerker(AdMedewerker adMedewerker) {
         this.adMedewerker = adMedewerker;
     }
 
