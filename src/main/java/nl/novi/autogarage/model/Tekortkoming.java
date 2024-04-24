@@ -10,6 +10,33 @@ public class Tekortkoming {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+//    @Getter
+//    private Long autoId;
+
+    public Long getId() {
+        return id;
+    }
+//
+//    public Long getAutoId() {
+//        return autoId;
+//    }
+//
+//    public void setAutoId(Long autoId) {
+//        this.autoId = autoId;
+//    }
+
+    public String getBeschrijving() {
+        return beschrijving;
+    }
+
+    public String getOplossing() {
+        return oplossing;
+    }
+
+    public Auto getAuto() {
+        return auto;
+    }
+
     @Getter
     private String beschrijving;
     @Getter

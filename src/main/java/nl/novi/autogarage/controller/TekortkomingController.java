@@ -52,4 +52,11 @@ public class TekortkomingController {
         tekortkoming.setOplossing(tekortkomingDto.getOplossing());
         return tekortkoming;
     }
+
+    @PostMapping("/{autoId}/toevoegen")
+    public ResponseEntity<Tekortkoming> addTekortkomingToAuto(@PathVariable Long autoId, @RequestBody TekortkomingDto tekortkomingDto) {
+        Tekortkoming createdTekortkoming = tekortkomingService.addTekortkomingToAuto(autoId, tekortkomingDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTekortkoming);
+    }
+
 }
