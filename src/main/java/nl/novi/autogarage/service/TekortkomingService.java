@@ -46,8 +46,8 @@ public class TekortkomingService {
 
 
 
-    public Tekortkoming addTekortkomingToAuto(Long autoId, TekortkomingDto tekortkomingdto) {
-        Optional<Auto> autoOpt = autoRepository.findById(autoId);
+    public Tekortkoming addTekortkomingToAuto( TekortkomingDto tekortkomingdto) {
+        Optional<Auto> autoOpt = autoRepository.findById(tekortkomingdto.getAutoId());
         if (autoOpt.isPresent()) {
             Auto auto = autoOpt.get();
             Tekortkoming tekortkoming = new Tekortkoming();
@@ -57,7 +57,7 @@ public class TekortkomingService {
             Tekortkoming savedTekortkoming = tekortkomingRepository.save(tekortkoming);
             return savedTekortkoming;
         } else {
-            throw new ResourceNotFoundException("Auto not found with id " + autoId);
+            throw new ResourceNotFoundException("Auto not found with id " + tekortkomingdto.getAutoId());
         }
     }
 

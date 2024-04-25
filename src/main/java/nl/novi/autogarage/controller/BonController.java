@@ -1,5 +1,6 @@
 package nl.novi.autogarage.controller;
 
+import nl.novi.autogarage.dto.BonDto;
 import nl.novi.autogarage.model.Bon;
 import nl.novi.autogarage.service.BonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,10 @@ public class BonController {
     }
 
     @PostMapping
-    public ResponseEntity<Bon> createBon(@RequestBody Bon bon) {
-        Bon createdBon = bonService.createBon(Bon);
+    public ResponseEntity<Bon> createBon(@RequestBody BonDto bonDto) {
+        Bon newBon = new Bon();
+        newBon.setBedrag(bonDto.getBedrag());
+        Bon createdBon = bonService.createBon(bonDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBon);
     }
 

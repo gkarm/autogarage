@@ -1,5 +1,6 @@
 package nl.novi.autogarage.service;
 
+import nl.novi.autogarage.dto.BonDto;
 import nl.novi.autogarage.exception.ResourceNotFoundException;
 import nl.novi.autogarage.model.Bon;
 import nl.novi.autogarage.repository.BonRepository;
@@ -21,15 +22,16 @@ public class BonService {
         return bonRepository.findById(id).orElse(null);
     }
 
-    public Bon createBon(double bedrag) {
+    public Bon createBon(BonDto bonDto) {
 
-        Bon bon = new Bon();
-        bon.setBedrag();
-        double totaalBedrag = berekenTotaalBedrag(bon);
-        double btwTarief = 0.21;
-        double btwBedrag = totaalBedrag * btwTarief;
-        bon.setTotaalBedragInclusiefBtw(totaalBedrag + btwBedrag);
-        return bonRepository.save(bon);
+        Bon newBon = new Bon();
+        newBon.setBedrag(bonDto.getBedrag());
+        // Standaardwaarden instellen
+        newBon.setTotaalBedragInclusiefBtw(newBon.getBedrag() * 1.21); // BTW toevoegen, indien relevant
+        newBon.setKeuringBedrag(10.0); // Voorbeeldwaarde voor keuring
+        newBon.setHandelingenBedrag(20.0); // Voorbeeldwaarde voor handelingen
+        newBon.setOnderdelenBedrag(15.0); // Voorbeeldwaarde voor onderdelen
+        return bonRepository.save(newBon);
     }
 
     private double berekenTotaalBedrag(Bon bon) {

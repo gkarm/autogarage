@@ -80,6 +80,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/klanten").authenticated()
                         .requestMatchers(HttpMethod.POST, "/klanten").authenticated()
                         .requestMatchers(HttpMethod.POST,"/upload").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/tekortkomingen").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/tekortkomingen/{id}").authenticated()
+                        .requestMatchers(HttpMethod.PUT,"/tekortkomingen/{id}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE,"/tekortkomingen/{id}").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/reparaties").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/bons").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/gebruikte-handelingen").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/gebruikte-onderdelen").authenticated()
+
 
 
 

@@ -69,5 +69,6 @@ public class Tekortkoming {
     }
 
     public void setAuto(Auto auto) {
+        this.auto = auto;
     }
 }

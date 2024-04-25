@@ -4,6 +4,10 @@ public class BonDto {
     public Long id;
     public double bedrag;
 
+    public BonDto() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -19,4 +23,11 @@ public class BonDto {
     public void setBedrag(double bedrag) {
         this.bedrag = bedrag;
     }
+
+    public BonDto(Long id, double bedrag) {
+        this.id = id;
+        this.bedrag = bedrag;
+    }
+
+
 }

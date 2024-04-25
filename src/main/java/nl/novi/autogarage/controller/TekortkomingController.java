@@ -16,11 +16,11 @@ public class TekortkomingController {
     private TekortkomingService tekortkomingService;
     private Auto auto;
 
-    @PostMapping
-    public ResponseEntity<Tekortkoming> createTekortkoming(@RequestBody TekortkomingDto tekortkomingDto) {
-        Tekortkoming createdTekortkoming = tekortkomingService.createTekortkoming(mapToTekortkoming(tekortkomingDto));
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdTekortkoming);
-    }
+//    @PostMapping
+//    public ResponseEntity<Tekortkoming> createTekortkoming(@RequestBody TekortkomingDto tekortkomingDto) {
+//        Tekortkoming createdTekortkoming = tekortkomingService.createTekortkoming(mapToTekortkoming(tekortkomingDto));
+//        return ResponseEntity.status(HttpStatus.CREATED).body(createdTekortkoming);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Tekortkoming> getTekortkomingById(@PathVariable Long id) {
@@ -46,16 +46,16 @@ public class TekortkomingController {
         return ResponseEntity.noContent().build();
     }
 
-    private Tekortkoming mapToTekortkoming(TekortkomingDto tekortkomingDto) {
-        Tekortkoming tekortkoming = new Tekortkoming(auto);
-        tekortkoming.setBeschrijving(tekortkomingDto.getBeschrijving());
-        tekortkoming.setOplossing(tekortkomingDto.getOplossing());
-        return tekortkoming;
-    }
+//    private Tekortkoming mapToTekortkoming(TekortkomingDto tekortkomingDto) {
+//        Tekortkoming tekortkoming = new Tekortkoming(auto);
+//        tekortkoming.setBeschrijving(tekortkomingDto.getBeschrijving());
+//        tekortkoming.setOplossing(tekortkomingDto.getOplossing());
+//        return tekortkoming;
+//    }
 
-    @PostMapping("/{autoId}/toevoegen")
-    public ResponseEntity<Tekortkoming> addTekortkomingToAuto(@PathVariable Long autoId, @RequestBody TekortkomingDto tekortkomingDto) {
-        Tekortkoming createdTekortkoming = tekortkomingService.addTekortkomingToAuto(autoId, tekortkomingDto);
+    @PostMapping
+    public ResponseEntity<Tekortkoming> addTekortkomingToAuto(@RequestBody TekortkomingDto tekortkomingDto) {
+        Tekortkoming createdTekortkoming = tekortkomingService.addTekortkomingToAuto(tekortkomingDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTekortkoming);
     }
 
