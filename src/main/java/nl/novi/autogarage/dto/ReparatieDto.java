@@ -19,24 +19,33 @@ public class ReparatieDto {
 //    public Date datum;
 //    public List<Onderdeel> onderdelen;
 
+    @Getter
     private Long id;
+    @Getter
     private Monteur monteur;
+    @Getter
     private Date datum;
+    @Getter
     private String beschrijving;
+    @Getter
     private double totaalBedrag;
+    @Getter
     private String status;
 
     // In plaats van volledige objecten zoals Onderdeel, Bon, etc. te hebben,
     // kunt u bijvoorbeeld alleen hun ID's gebruiken om relaties te beheren
+    @Getter
     private Long bonId;
+    @Getter
     private List<Long> onderdelenIds;  // IDs van de onderdelen
-    private List<Long> gebruikteOnderdeelIds;  // IDs van gebruikte onderdelen
+    private List<Long> gebruiktOnderdeelIds;  // IDs van gebruikte onderdelen
+    @Getter
     private List<Long> gebruikteHandelingIds;  // IDs van gebruikte handelingen
 
 
 
 
-    public ReparatieDto(Long id, Monteur monteur, Date datum, String beschrijving, double totaalBedrag, String status, Long bonId, List<Long> onderdelenIds, List<Long> gebruikteOnderdeelIds, List<Long> gebruikteHandelingIds) {
+    public ReparatieDto(Long id, Monteur monteur, Date datum, String beschrijving, double totaalBedrag, String status, Long bonId, List<Long> onderdelenIds, List<Long> gebruiktOnderdeelIds, List<Long> gebruikteHandelingIds) {
         this.id = id;
         this.monteur = monteur;
         this.datum = datum;
@@ -45,68 +54,36 @@ public class ReparatieDto {
         this.status = status;
         this.bonId = bonId;
         this.onderdelenIds = onderdelenIds;
-        this.gebruikteOnderdeelIds = gebruikteOnderdeelIds;
+        this.gebruiktOnderdeelIds = gebruiktOnderdeelIds;
         this.gebruikteHandelingIds = gebruikteHandelingIds;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Monteur getMonteur() {
-        return monteur;
-    }
-
     public void setMonteur(Monteur monteur) {
         this.monteur = monteur;
-    }
-
-    public Date getDatum() {
-        return datum;
     }
 
     public void setDatum(Date datum) {
         this.datum = datum;
     }
 
-    public String getBeschrijving() {
-        return beschrijving;
-    }
-
     public void setBeschrijving(String beschrijving) {
         this.beschrijving = beschrijving;
-    }
-
-    public double getTotaalBedrag() {
-        return totaalBedrag;
     }
 
     public void setTotaalBedrag(double totaalBedrag) {
         this.totaalBedrag = totaalBedrag;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public Long getBonId() {
-        return bonId;
-    }
-
     public void setBonId(Long bonId) {
         this.bonId = bonId;
-    }
-
-    public List<Long> getOnderdelenIds() {
-        return onderdelenIds;
     }
 
     public void setOnderdelenIds(List<Long> onderdelenIds) {
@@ -114,15 +91,11 @@ public class ReparatieDto {
     }
 
     public List<Long> getGebruikteOnderdeelIds() {
-        return gebruikteOnderdeelIds;
+        return gebruiktOnderdeelIds;
     }
 
     public void setGebruikteOnderdeelIds(List<Long> gebruikteOnderdeelIds) {
-        this.gebruikteOnderdeelIds = gebruikteOnderdeelIds;
-    }
-
-    public List<Long> getGebruikteHandelingIds() {
-        return gebruikteHandelingIds;
+        this.gebruiktOnderdeelIds = gebruikteOnderdeelIds;
     }
 
     public void setGebruikteHandelingIds(List<Long> gebruikteHandelingIds) {

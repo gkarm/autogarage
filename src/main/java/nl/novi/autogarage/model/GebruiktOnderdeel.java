@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Entity
-public class GebruiktOnderdeel {
+public class  GebruiktOnderdeel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

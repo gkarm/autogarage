@@ -87,7 +87,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/reparaties").authenticated()
                         .requestMatchers(HttpMethod.POST, "/bons").authenticated()
                         .requestMatchers(HttpMethod.POST, "/gebruikte-handelingen").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/gebruikte-onderdelen").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/gebruiktonderdelen").authenticated()
 
 
 

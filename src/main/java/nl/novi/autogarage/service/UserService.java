@@ -85,13 +85,27 @@ public class UserService {
     }
 
     public void deleteUser(MyUserDetails myUserDetails, String username){
+
+
+        if (!myUserDetails.getUsername().equals(username) &&
+                !myUserDetails.getUserRole().contains(UserRole.ADMIN)) {
+            throw new ForbiddenException("You are logged in as " + myUserDetails.getUsername() + ", not as " + username + ".");
+        }
+
         Optional<User> userOptional = userRepos.findById(username);
-        if (userOptional.isEmpty() || (!myUserDetails.getUsername().equals(username) &&
-                !myUserDetails.getUserRole().contains(UserRole.ADMIN))){
-            throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+", not as "+username+".");
+        if (userOptional.isEmpty()) {
+            throw new RecordNotFoundException("User " + username + " could not be found");
         }
 
         userRepos.deleteById(username);
+
+//        Optional<User> userOptional = userRepos.findById(username);
+//        if (userOptional.isEmpty() || (!myUserDetails.getUsername().equals(username) &&
+//                !myUserDetails.getUserRole().contains(UserRole.ADMIN))){
+//            throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+", not as "+username+".");
+//        }
+//
+//        userRepos.deleteById(username);
     }
 
 
