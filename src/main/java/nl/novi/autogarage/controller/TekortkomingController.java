@@ -16,11 +16,7 @@ public class TekortkomingController {
     private TekortkomingService tekortkomingService;
     private Auto auto;
 
-//    @PostMapping
-//    public ResponseEntity<Tekortkoming> createTekortkoming(@RequestBody TekortkomingDto tekortkomingDto) {
-//        Tekortkoming createdTekortkoming = tekortkomingService.createTekortkoming(mapToTekortkoming(tekortkomingDto));
-//        return ResponseEntity.status(HttpStatus.CREATED).body(createdTekortkoming);
-//    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Tekortkoming> getTekortkomingById(@PathVariable Long id) {
@@ -46,12 +42,7 @@ public class TekortkomingController {
         return ResponseEntity.noContent().build();
     }
 
-//    private Tekortkoming mapToTekortkoming(TekortkomingDto tekortkomingDto) {
-//        Tekortkoming tekortkoming = new Tekortkoming(auto);
-//        tekortkoming.setBeschrijving(tekortkomingDto.getBeschrijving());
-//        tekortkoming.setOplossing(tekortkomingDto.getOplossing());
-//        return tekortkoming;
-//    }
+
 
     @PostMapping
     public ResponseEntity<Tekortkoming> addTekortkomingToAuto(@RequestBody TekortkomingDto tekortkomingDto) {
