@@ -14,17 +14,8 @@ public class GebruiktOnderdeelService {
     private GebruiktOnderdeel gebruiktOnderdeel;
 
     public GebruiktOnderdeel createGebruiktOnderdeel(Reparatie reparatie, Onderdeel onderdeel) {
-/*
-        GebruiktOnderdeel gebruiktOnderdeel = new GebruiktOnderdeel();
-        gebruiktOnderdeel.setReparatie(reparatie);
-        gebruiktOnderdeel.setOnderdeel(onderdeel);
-*/
         return gebruiktOnderdeelRepository.save(gebruiktOnderdeel);
     }
-
-//    public GebruiktOnderdeel createGebruiktOnderdeel(GebruiktOnderdeel gebruiktOnderdeel) {
-//        return gebruiktOnderdeelRepository.save(gebruiktOnderdeel);
-//    }
 
     public GebruiktOnderdeel getGebruiktOnderdeelById(Long id) {
         return gebruiktOnderdeelRepository.findById(id).orElse(null);

@@ -19,10 +19,6 @@ public class GebruikteHandelingService {
         return gebruikteHandelingRepository.save(gebruikteHandeling);
     }
 
-//    public GebruikteHandeling createGebruikteHandeling(GebruikteHandeling gebruikteHandeling) {
-//        return gebruikteHandelingRepository.save(gebruikteHandeling);
-//    }
-
     public GebruikteHandeling getGebruikteHandelingById(Long id) {
         return gebruikteHandelingRepository.findById(id).orElse(null);
     }

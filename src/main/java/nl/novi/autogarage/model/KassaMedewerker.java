@@ -25,9 +25,6 @@ public class KassaMedewerker {
 
     private LocalDate dob;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "kassaMedewerker")
-    private List<Auto> autos;
-
     public Long getId() {
         return id;
     }

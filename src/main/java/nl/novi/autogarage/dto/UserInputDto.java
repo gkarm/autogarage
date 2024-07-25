@@ -20,7 +20,7 @@ public class UserInputDto {
 
 
     @Getter
-//    private String role;
+
     private List<String> role;
 
     public UserInputDto(String username, String password, List<String> role) {

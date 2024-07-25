@@ -26,11 +26,11 @@ public class BonService {
 
         Bon newBon = new Bon();
         newBon.setBedrag(bonDto.getBedrag());
-        // Standaardwaarden instellen
-        newBon.setTotaalBedragInclusiefBtw(newBon.getBedrag() * 1.21); // BTW toevoegen, indien relevant
-        newBon.setKeuringBedrag(10.0); // Voorbeeldwaarde voor keuring
-        newBon.setHandelingenBedrag(20.0); // Voorbeeldwaarde voor handelingen
-        newBon.setOnderdelenBedrag(15.0); // Voorbeeldwaarde voor onderdelen
+
+        newBon.setTotaalBedragInclusiefBtw(newBon.getBedrag() * 1.21);
+        newBon.setKeuringBedrag(10.0);
+        newBon.setHandelingenBedrag(20.0);
+        newBon.setOnderdelenBedrag(15.0);
         return bonRepository.save(newBon);
     }
 
@@ -49,13 +49,7 @@ public class BonService {
 
         return bonRepository.save(existingBon);
     }
-//    public Bon updateBon(Long id, Bon bon) {
-//        if (bonRepository.existsById(id)) {
-//            bon.setId(id);
-//            return bonRepository.save(bon);
-//        }
-//        return null;
-//    }
+
 
     public void deleteBon(Long id) {
         bonRepository.deleteById(id);

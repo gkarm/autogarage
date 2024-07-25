@@ -14,10 +14,7 @@ import java.util.List;
 @Setter
 public class ReparatieDto {
 
-//    public Long id;
-//    public Monteur monteur;
-//    public Date datum;
-//    public List<Onderdeel> onderdelen;
+
 
     @Getter
     private Long id;
@@ -32,8 +29,7 @@ public class ReparatieDto {
     @Getter
     private String status;
 
-    // In plaats van volledige objecten zoals Onderdeel, Bon, etc. te hebben,
-    // kunt u bijvoorbeeld alleen hun ID's gebruiken om relaties te beheren
+
     @Getter
     private Long bonId;
     @Getter

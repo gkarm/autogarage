@@ -18,9 +18,6 @@ public class AdMedewerker {
     private String lastName;
     private LocalDate dob;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adMedewerker")
-    private List<Auto> autos;
-
     public Long getId() {
         return id;
     }
@@ -53,11 +50,4 @@ public class AdMedewerker {
         this.dob = dob;
     }
 
-    public List<Auto> getAutos() {
-        return autos;
-    }
-
-    public void setAutos(List<Auto> autos) {
-        this.autos = autos;
-    }
 }

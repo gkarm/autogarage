@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-//    @Autowired
+
 
     private final UserRepository userRepos;
 
@@ -46,8 +46,8 @@ public class UserService {
         if (!username.equals(myUserDetails.getUsername()) &&
                 !myUserDetails.getUserRole().contains(UserRole.ADMIN)){
             throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+", not as "+username+".");
-//                !myUserDetails.getUserRole().equals(UserRole.ADMIN)){
-//            throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+", not as "+username+".");
+
+
         }
         result= dtoFromUser(userFromName(username));
 
@@ -63,7 +63,7 @@ public class UserService {
         User user = userFromDto(dto);
         userRepos.save(user);
 
-//        userRepos.save(user);
+
 
 
         return dtoFromUser(user);
@@ -99,13 +99,6 @@ public class UserService {
 
         userRepos.deleteById(username);
 
-//        Optional<User> userOptional = userRepos.findById(username);
-//        if (userOptional.isEmpty() || (!myUserDetails.getUsername().equals(username) &&
-//                !myUserDetails.getUserRole().contains(UserRole.ADMIN))){
-//            throw new ForbiddenException("You are logged in as "+myUserDetails.getUsername()+", not as "+username+".");
-//        }
-//
-//        userRepos.deleteById(username);
     }
 
 
@@ -144,7 +137,7 @@ public class UserService {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
-//        user.setUserRole(userFromName(dto.getRole()));
+
        user.setUserRole(userFromName(dto.getRole()));
         return user;
     }

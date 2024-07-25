@@ -8,7 +8,7 @@ public class GebruikteHandeling {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Toegevoegde velden
+
     @ManyToOne
     @JoinColumn(name = "reparatie_id", nullable = false)
     private Reparatie reparatie;

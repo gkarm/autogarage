@@ -23,11 +23,11 @@ public class Keuring {
 
     @Column(columnDefinition = "TEXT")
     private String opmerking;
-    private String status; // Status van de Keuring, bijv. "In behandeling", "Voltooid"
+    private String status;
     @Column(name = "keurings_resultaat", columnDefinition = "TEXT")
     private String keuringsResultaat;
 
-    public Keuring() {} // Constructor
+    public Keuring() {}
 
     public Long getId() {
         return id;

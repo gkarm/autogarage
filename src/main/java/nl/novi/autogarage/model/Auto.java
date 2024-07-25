@@ -1,13 +1,13 @@
-package nl.novi.autogarage.model;
 
+package nl.novi.autogarage.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,27 +29,13 @@ public class Auto {
     @ManyToMany
     private Set<Monteur> monteurs = new HashSet<>();
 
-
-    @ManyToOne(fetch = FetchType.EAGER,optional = false)
-    @JoinColumn(name = "admedewerker")
-    private AdMedewerker adMedewerker;
-
     @Getter
-    @ManyToOne(fetch = FetchType.EAGER,optional = false)
-    private KassaMedewerker kassaMedewerker;
-
-    @Getter
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    private BoMedewerker boMedewerker;
-
-    @Getter
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Klant klant;
 
     @Getter
-    @OneToMany(mappedBy = "auto", cascade = CascadeType.ALL)
-    private List<Tekortkoming> tekortkomingen;
-
+    @OneToMany(mappedBy = "auto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Tekortkoming> tekortkomingen = new HashSet<>();
 
     public void setMerk(String merk) {
         this.merk = merk;
@@ -71,30 +57,14 @@ public class Auto {
         this.bouwjaar = bouwjaar;
     }
 
-    public void setId(Long id) {
-    }
-
-    public void setMonteurs(Set<Monteur> monteurs) {
-        this.monteurs = monteurs;
-    }
-
-    public void setAdmedewerker(AdMedewerker adMedewerker) {
-        this.adMedewerker = adMedewerker;
-    }
-
-    public void setKassaMedewerker(KassaMedewerker kassaMedewerker) {
-        this.kassaMedewerker = kassaMedewerker;
-    }
-
-    public void setBoMedewerker(BoMedewerker boMedewerker) {
-        this.boMedewerker = boMedewerker;
-    }
-
     public void setKlant(Klant klant) {
         this.klant = klant;
     }
 
-    public void setTekortkomingen(List<Tekortkoming> tekortkomingen) {
+    public Collection<Tekortkoming> getTekortkomingen() {
+        return tekortkomingen;
+    }
+    public void setTekortkomingen(Set<Tekortkoming> tekortkomingen) {
         this.tekortkomingen = tekortkomingen;
     }
 }

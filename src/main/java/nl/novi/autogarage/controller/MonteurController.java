@@ -45,19 +45,6 @@ public class MonteurController {
 
 
 
-//    @GetMapping
-//    public ResponseEntity<List<Monteur>> getAllMonteurs() {
-//        return ResponseEntity.ok(monteurRepository.findAll());
-//
-//    }
-//
-//    @GetMapping("/after")
-//    public ResponseEntity<List<Monteur>> getMonteursAfter(@RequestParam LocalDate date) {
-//        return ResponseEntity.ok(monteurRepository.findByDobAfter(date));
-//    }
-
-
-
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Object> createMonteur(@AuthenticationPrincipal MyUserDetails myUserDetails, @Valid @RequestBody MonteurDto monteurDto, BindingResult br) {

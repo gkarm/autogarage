@@ -16,11 +16,11 @@ public class UserDto {
     public String username;
 
     public String password;
-//    public UserRole userRole;
+
     private List<UserRole> userRole;
 
 
 
 
-//    public String[] roles;
+
 }

@@ -18,7 +18,7 @@ public class MonteurService {
 
 
     private final MonteurRepository repos;
-// Above code is the constructor injection
+
 public List<Monteur> getAllMonteurs() {
     return repos.findAll();
 }

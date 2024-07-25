@@ -23,7 +23,6 @@ public class MyUserDetails implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(userRole.name()));
         }
 
-//        authorities.add(new SimpleGrantedAuthority(user.getUserRole().name()));
 
         return authorities;
     }
