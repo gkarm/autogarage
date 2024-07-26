@@ -20,8 +20,6 @@ public class BoMedewerker {
 
     private LocalDate dob;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "boMedewerker")
-//    private List<Auto> autos;
 
     public Long getId() {
         return id;
@@ -51,13 +49,6 @@ public class BoMedewerker {
         this.dob = dob;
     }
 
-//    public List<Auto> getAutos() {
-//        return autos;
-//    }
-//
-//    public void setAutos(List<Auto> autos) {
-//        this.autos = autos;
-//    }
 
     public void setId(Long id) {
     }
