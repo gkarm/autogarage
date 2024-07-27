@@ -18,14 +18,14 @@ public class OnderdeelController {
 public OnderdeelController(OnderdeelService onderdeelService) {
     this.service = onderdeelService;
 }
-    // Endpoint om alle onderdelen op te halen
+
 @GetMapping
     public ResponseEntity<List<Onderdeel>> getAllOnderdelen() {
     List<Onderdeel> onderdelen = service.getAllOnderdelen();
     return new ResponseEntity<>(onderdelen, HttpStatus.OK);
 
 }
-    // Endpoint om een specifiek onderdeel op te halen op basis van ID
+
     @GetMapping("/{id}")
     public ResponseEntity<Onderdeel> getOnderdeelById(@PathVariable Long id) {
         Onderdeel onderdeel = service.getOnderdeelById(id);
@@ -35,14 +35,14 @@ public OnderdeelController(OnderdeelService onderdeelService) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    // Endpoint om een nieuw onderdeel toe te voegen
+
     @PostMapping
     public ResponseEntity<Onderdeel> addOnderdeel(@RequestBody Onderdeel onderdeel) {
         Onderdeel addedOnderdeel = service.addOnderdeel(onderdeel);
         return new ResponseEntity<>(addedOnderdeel, HttpStatus.CREATED);
     }
 
-    // Endpoint om een onderdeel bij te werken
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Onderdeel> updateOnderdeel(@PathVariable Long id, @RequestBody Onderdeel updatedOnderdeel) {
@@ -54,7 +54,7 @@ public OnderdeelController(OnderdeelService onderdeelService) {
         }
     }
 
-    // Endpoint om een onderdeel te verwijderen op basis van ID
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOnderdeel(@PathVariable Long id) {

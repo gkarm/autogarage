@@ -9,13 +9,13 @@ public class Onderdeel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "monteur_id")
-    private Monteur monteur;
+//    @ManyToOne
+//    @JoinColumn(name = "monteur_id")
+//    private Monteur monteur;
 
-    @ManyToOne
-    @JoinColumn(name = "kassaMedewerker_id")
-    private KassaMedewerker kassaMedewerker;
+//    @ManyToOne
+//    @JoinColumn(name = "kassaMedewerker_id")
+//    private KassaMedewerker kassaMedewerker;
 
     @Column(name = "onderdeel_name", length = 128)
     private String OnderdeelName;
@@ -32,21 +32,21 @@ public class Onderdeel {
         this.id = id;
     }
 
-    public Monteur getMonteur() {
-        return monteur;
-    }
+//    public Monteur getMonteur() {
+//        return monteur;
+//    }
 
-    public void setMonteur(Monteur monteur) {
-        this.monteur = monteur;
-    }
+//    public void setMonteur(Monteur monteur) {
+//        this.monteur = monteur;
+//    }
 
-    public KassaMedewerker getKassaMedewerker() {
-        return kassaMedewerker;
-    }
+//    public KassaMedewerker getKassaMedewerker() {
+//        return kassaMedewerker;
+//    }
 
-    public void setKassaMedewerker(KassaMedewerker kassaMedewerker) {
-        this.kassaMedewerker = kassaMedewerker;
-    }
+//    public void setKassaMedewerker(KassaMedewerker kassaMedewerker) {
+//        this.kassaMedewerker = kassaMedewerker;
+//    }
 
     public String getOnderdeelName() {
         return OnderdeelName;
