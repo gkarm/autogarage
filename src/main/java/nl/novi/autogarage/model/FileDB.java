@@ -15,6 +15,11 @@ public class FileDB {
 
     @Lob
     private byte[] data;
+
+    @ManyToOne
+    @JoinTable(name = "kassamedewerker_id")
+    private KassaMedewerker kassaMedewerker;
+
     public FileDB() {
 
     }
@@ -22,6 +27,8 @@ public class FileDB {
         this.name = name;
         this.type = type;
         this.data = data;
+        this.kassaMedewerker = kassaMedewerker;
+
     }
 
     public String getId() {
@@ -54,5 +61,13 @@ public class FileDB {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public KassaMedewerker getKassaMedewerker() {
+        return kassaMedewerker;
+    }
+
+    public void setKassaMedewerker(KassaMedewerker kassaMedewerker) {
+        this.kassaMedewerker = kassaMedewerker;
     }
 }
