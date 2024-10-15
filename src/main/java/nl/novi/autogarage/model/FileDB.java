@@ -23,7 +23,7 @@ public class FileDB {
     public FileDB() {
 
     }
-    public FileDB(String name, String type, byte[] data) {
+    public FileDB(String name, String type, byte[] data, KassaMedewerker kassaMedewerker) {
         this.name = name;
         this.type = type;
         this.data = data;

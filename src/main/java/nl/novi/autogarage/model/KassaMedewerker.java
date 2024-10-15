@@ -1,6 +1,7 @@
 package nl.novi.autogarage.model;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -15,15 +16,24 @@ public class KassaMedewerker {
     @GeneratedValue
     private Long id;
 
+    @Setter
     @Column(name="first_name", length = 128)
     private String firstName;
 
+    @Setter
     @Column(name="last_name", length = 128)
     private String lastName;
 
-
-
+    @Setter
     private LocalDate dob;
+
+    @Setter
+    @OneToMany(mappedBy = "kassaMedewerker", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FileDB> files;
+
+    public List<FileDB> getFiles() {
+        return files;
+    }
 
     public Long getId() {
         return id;
@@ -34,24 +44,12 @@ public class KassaMedewerker {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public LocalDate getDob() {
         return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
     }
 
 
