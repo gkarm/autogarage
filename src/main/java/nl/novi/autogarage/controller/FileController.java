@@ -3,7 +3,9 @@ package nl.novi.autogarage.controller;
 import nl.novi.autogarage.message.ResponseFile;
 import nl.novi.autogarage.message.ResponseMessage;
 import nl.novi.autogarage.model.FileDB;
+import nl.novi.autogarage.model.KassaMedewerker;
 import nl.novi.autogarage.service.FileStorageService;
+import nl.novi.autogarage.service.KassaMedewerkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,13 +25,23 @@ public class FileController {
     @Autowired
 
     private FileStorageService storageService;
+    @Autowired
+    private KassaMedewerkerService kassaMedewerkerService;
 
 
     @PostMapping(value = "/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestPart(value = "file", required = false) MultipartFile file) {
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestPart(value = "file", required = false) MultipartFile file,@RequestParam Long kassamedewerkerId) {
         String message = "";
         try {
-            storageService.store(file);
+
+            KassaMedewerker kassaMedewerker = kassaMedewerkerService.getKassamedewerkerById(kassamedewerkerId);
+
+            if (kassaMedewerker == null) {
+                message = "KassaMedewerker not found";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+            }
+
+            storageService.store(file, kassaMedewerker);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));

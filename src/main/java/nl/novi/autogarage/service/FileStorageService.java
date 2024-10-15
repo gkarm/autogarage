@@ -1,6 +1,7 @@
 package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.model.FileDB;
+import nl.novi.autogarage.model.KassaMedewerker;
 import nl.novi.autogarage.repository.FileDBRepository;
 import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,9 @@ public class FileStorageService {
     private FileDBRepository fileDBRepository;
 
 
-    public FileDB store(MultipartFile file) throws IOException {
+    public FileDB store(MultipartFile file, KassaMedewerker kassaMedewerker) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileDB FileDB = new FileDB(fileName, file.getContentType(),file.getBytes());
+        FileDB FileDB = new FileDB(fileName, file.getContentType(),file.getBytes(), kassaMedewerker);
 
         return fileDBRepository.save(FileDB);
     }
