@@ -89,10 +89,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/gebruikte-handelingen").authenticated()
                         .requestMatchers(HttpMethod.POST, "/gebruiktonderdelen").authenticated()
 
-
-
-
-                        .requestMatchers("/**").permitAll()
                         .anyRequest().denyAll()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
