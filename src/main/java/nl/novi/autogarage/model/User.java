@@ -25,9 +25,11 @@ public class User {
     @Column(name = "user_role")
     private List<UserRole> UserRole;
 
+
     public User(String username, String password, List<UserRole> userRole) {
         this.username = username;
         this.password = password;
+
         this.UserRole = userRole;
 
     }
