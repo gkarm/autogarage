@@ -5,7 +5,8 @@ import nl.novi.autogarage.dto.UserDto;
 import nl.novi.autogarage.dto.UserInputDto;
 import nl.novi.autogarage.enumeration.UserRole;
 import nl.novi.autogarage.exception.ForbiddenException;
-import nl.novi.autogarage.exception.RecordNotFoundException;
+import nl.novi.autogarage.exception.GlobalExceptionHandler;
+import nl.novi.autogarage.exception.ResourceNotFoundException;
 import nl.novi.autogarage.model.User;
 import nl.novi.autogarage.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -77,7 +78,8 @@ public class UserService {
         User oldUser = userFromName(username);
         User newUser = userFromDto(dto);
         if (!newUser.getUsername().equals(oldUser.getUsername())){
-            throw new RecordNotFoundException("Username cannot be changed, this is your ID");
+            throw new ResourceNotFoundException("Username cannot be changed, this is your ID");
+
         }
 
         userRepos.save(newUser);
@@ -94,7 +96,7 @@ public class UserService {
 
         Optional<User> userOptional = userRepos.findById(username);
         if (userOptional.isEmpty()) {
-            throw new RecordNotFoundException("User " + username + " could not be found");
+            throw new ResourceNotFoundException("User " + username + " could not be found");
         }
 
         userRepos.deleteById(username);
@@ -119,7 +121,7 @@ public class UserService {
         {
             result = userOptional.get();
         } else{
-            throw new RecordNotFoundException("User "+username+" could not be found in the database");
+            throw new ResourceNotFoundException("User "+username+" could not be found in the database");
         }
         return result;
     }
