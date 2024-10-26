@@ -5,7 +5,7 @@ import nl.novi.autogarage.dto.UserDto;
 import nl.novi.autogarage.dto.UserInputDto;
 import nl.novi.autogarage.enumeration.UserRole;
 import nl.novi.autogarage.exception.ForbiddenException;
-import nl.novi.autogarage.exception.RecordNotFoundException;
+import nl.novi.autogarage.exception.ResourceNotFoundException;
 import nl.novi.autogarage.model.User;
 import nl.novi.autogarage.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -212,7 +212,7 @@ public class UserServiceTest {
         when(userRepository.findById("user1")).thenReturn(Optional.empty());
 
         // Act & Assert
-        RecordNotFoundException exception = assertThrows(RecordNotFoundException.class, () -> {
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
             userService.deleteUser(myUserDetails, "user1");
         });
 

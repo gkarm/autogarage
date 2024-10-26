@@ -67,4 +67,8 @@ public class Auto {
     public void setTekortkomingen(Set<Tekortkoming> tekortkomingen) {
         this.tekortkomingen = tekortkomingen;
     }
+
+    public void setId(long l) {
+
+    }
 }

@@ -56,4 +56,8 @@ public class Monteur {
     public Set<Auto> getAutos() {
         return autos;
     }
+
+    public void setId(long l) {
+
+    }
 }

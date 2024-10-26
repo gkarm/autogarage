@@ -13,6 +13,16 @@ public class KlantDto {
     private LocalDate dob;
     private String phone;
 
+    public KlantDto(Long id, String firstName, String lastName, LocalDate dob, String phone) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.phone = phone;
+    }
+
+    public KlantDto() {}
+
     public Long getId() {
         return id;
     }
