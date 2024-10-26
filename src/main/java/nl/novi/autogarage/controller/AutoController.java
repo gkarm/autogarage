@@ -67,7 +67,7 @@ public class AutoController {
             autoDto.kenteken = auto.getKenteken();
             autoDto.bouwjaar = auto.getBouwjaar();
             autoDto.klantId = auto.getKlant().getId();
-            // Add additional fields as needed
+
             return new ResponseEntity<>(autoDto, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
