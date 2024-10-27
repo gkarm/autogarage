@@ -26,10 +26,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class TekortkomingControllerIntegratieTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    TekortkomingService tekortkomingService;
+    private TekortkomingService tekortkomingService;
 
     @Test
     void getTekortkomingById_Found() throws Exception {
